@@ -1,49 +1,104 @@
+---
 openapi: 3.0.1
 info:
   title: Dynamics 365 Finance
   description: Descrição de operações para o grupo de serviços FRSUtils
-  termsOfService: 'http://www.4results.com.br'
+  termsOfService: http://www.4results.com.br
   contact:
     name: ''
-    url: 'http://www.4results.com.br'
+    url: http://www.4results.com.br
     email: Comercial@4results.com.br
   license:
     name: 4Results Ltda.
-    url: 'http://www.4results.com.br'
+    url: http://www.4results.com.br
   version: '1.0'
 servers:
-  - url: 'https://desenvolvimentobuildaos.sandbox.ax.dynamics.com{BasePath}'
-    description: ''
-    variables:
-      BasePath:
-        default: /api/Services
-        description: Caminho dos serviços
-        enum:
-          - /api/Services
+- url: https://desenvolvimentobuildaos.sandbox.ax.dynamics.com{BasePath}
+  description: ''
+  variables:
+    BasePath:
+      default: "/api/Services"
+      description: Caminho dos serviços
+      enum:
+      - "/api/Services"
 paths:
-  /FRSUtils/FRSOpenAPI/getServiceGroups:
-    $ref: paths\FRSUtils@FRSOpenAPI@getServiceGroups.yaml
-  /FRSUtils/FRSOpenAPI/getServices:
-    $ref: paths\FRSUtils@FRSOpenAPI@getServices.yaml
-  /FRSUtils/FRSOpenAPI/getEnvironments:
-    $ref: paths\FRSUtils@FRSOpenAPI@getEnvironments.yaml
-  /FRSUtils/FRSOpenAPI/getOpenApiDoc:
-    $ref: paths\FRSUtils@FRSOpenAPI@getOpenApiDoc.yaml
+  "/FRSUtils/FRSOpenAPI/getServiceGroups":
+    get:
+      tags:
+      - FRSOpenAPI
+      summary: ''
+      description: getServiceGroups
+      operationId: getServiceGroups
+      responses:
+        '201':
+          description: ''
+        '401':
+          description: Not authenticated
+      security:
+      - oauth2:
+        - write:pets
+        - read:pets
+  "/FRSUtils/FRSOpenAPI/getServices":
+    get:
+      tags:
+      - FRSOpenAPI
+      summary: ''
+      description: getServices
+      operationId: getServices
+      responses:
+        '201':
+          description: ''
+        '401':
+          description: Not authenticated
+      security:
+      - oauth2:
+        - write:pets
+        - read:pets
+  "/FRSUtils/FRSOpenAPI/getEnvironments":
+    get:
+      tags:
+      - FRSOpenAPI
+      summary: ''
+      description: getEnvironments
+      operationId: getEnvironments
+      responses:
+        '201':
+          description: ''
+        '401':
+          description: Not authenticated
+      security:
+      - oauth2:
+        - write:pets
+        - read:pets
+  "/FRSUtils/FRSOpenAPI/getOpenApiDoc":
+    get:
+      tags:
+      - FRSOpenAPI
+      summary: ''
+      description: getOpenApiDoc
+      operationId: getOpenApiDoc
+      responses:
+        '201':
+          description: ''
+        '401':
+          description: Not authenticated
+      security:
+      - oauth2:
+        - write:pets
+        - read:pets
 components:
   securitySchemes:
     oauth2:
       type: oauth2
       flows:
         authorizationCode:
-          authorizationUrl: >-
-            https://login.windows.net/4results.com.br/oauth2/authorize?resource=https://desenvolvimentobuildaos.sandbox.ax.dynamics.com
-          tokenUrl: >-
-            https://login.windows.net/4results.com.br/oauth2/token?resource=https://desenvolvimentobuildaos.sandbox.ax.dynamics.com
+          authorizationUrl: https://login.windows.net/4results.com.br/oauth2/authorize?resource=https://desenvolvimentobuildaos.sandbox.ax.dynamics.com
+          tokenUrl: https://login.windows.net/4results.com.br/oauth2/token?resource=https://desenvolvimentobuildaos.sandbox.ax.dynamics.com
           scopes:
             readAccess: Access read operations
             writeAccess: Access write operations
 security:
-  - {}
+- {}
 tags:
-  - name: FRSOpenAPI
-    description: 'Gerador de documentação openAPI 4Results '
+- name: FRSOpenAPI
+  description: 'Gerador de documentação openAPI 4Results '
