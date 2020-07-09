@@ -1,58 +1,13 @@
-# How to host Swagger API documentation with GitHub Pages
-[<img alt="The blog of Peter Evans: How to Host Swagger Documentation With Github Pages" title="View blog post" src="https://peterevans.dev/img/blog-published-badge.svg">](https://peterevans.dev/posts/how-to-host-swagger-docs-with-github-pages/)
+## The `openapi` folder
 
-This repository is a template for using the [Swagger UI](https://github.com/swagger-api/swagger-ui) to dynamically generate beautiful documentation for your API and host it for free with GitHub Pages.
+This folder contains your entrypoint `openapi.yaml`.
 
-The template will periodically auto-update the Swagger UI dependency and create a pull request. See the [GitHub Actions workflow here](.github/workflows/update-swagger.yml).
+That file contains references to the entire API definition.
 
-The example API specification used by this repository can be seen hosted at [https://peter-evans.github.io/swagger-github-pages](https://peter-evans.github.io/swagger-github-pages/).
+Here are some sections to pay attention to:
 
-## Steps to use this template
-
-1. Click the `Use this template` button above to create a new repository from this template.
-
-2. Go to the settings for your repository at `https://github.com/{github-username}/{repository-name}/settings` and enable GitHub Pages.
-
-    ![Headers](/screenshots/swagger-github-pages.png?raw=true)
-    
-3. Browse to the Swagger documentation at `https://{github-username}.github.io/{repository-name}/`.
-
-
-## Steps to manually configure in your own repository
-
-1. Download the latest stable release of the Swagger UI [here](https://github.com/swagger-api/swagger-ui/releases).
-
-2. Extract the contents and copy the "dist" directory to the root of your repository.
-
-3. Move the file "index.html" from the directory "dist" to the root of your repository.
-    ```
-    mv dist/index.html .
-    ```
-    
-4. Copy the YAML specification file for your API to the root of your repository.
-
-5. Edit [index.html](index.html) and change the `url` property to reference your local YAML file. 
-    ```javascript
-        const ui = SwaggerUIBundle({
-            url: "swagger.yaml",
-        ...
-    ```
-    Then fix any references to files in the "dist" directory.
-    ```html
-    ...
-    <link rel="stylesheet" type="text/css" href="dist/swagger-ui.css" >
-    <link rel="icon" type="image/png" href="dist/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="dist/favicon-16x16.png" sizes="16x16" />    
-    ...
-    <script src="dist/swagger-ui-bundle.js"> </script>
-    <script src="dist/swagger-ui-standalone-preset.js"> </script>    
-    ...
-    ```
-    
-6. Go to the settings for your repository at `https://github.com/{github-username}/{repository-name}/settings` and enable GitHub Pages.
-
-    ![Headers](/screenshots/swagger-github-pages.png?raw=true)
-    
-7. Browse to the Swagger documentation at `https://{github-username}.github.io/{repository-name}/`.
-
-   The example API specification used by this repository can be seen hosted at [https://peter-evans.github.io/swagger-github-pages](https://peter-evans.github.io/swagger-github-pages/).
+* Top-level **description**: this accepts markdown, and Redoc and Redocly API Reference will render it at the top of the docs.  Consider maintaining your markdown in a separate file and [embedding it](https://docs.redoc.ly/api-reference-docs/embedded-markdown/). Note to Redoc community edition users, the special tags are only available to the Redocly API Reference users, but you can still embed markdown.
+* Security schemes: you will define the scheme(s) your API uses for security (eg OAuth2, API Key, etc...). The security schemes are used by the Redocly API Reference "Try It" API console feature.
+* [Paths](paths/README.md): this defines each endpoint.  A path can have one operation per http method.
+* Tags: it's a good idea to organize each operation.  Each tag can have a description.  The description is used as a section description within the reference docs.
+* Servers: a list of your servers, each with a URL.
