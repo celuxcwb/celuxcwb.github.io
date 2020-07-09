@@ -1,0 +1,10 @@
+type: oauth2
+flows:
+  authorizationCode:
+    authorizationUrl: >-
+      https://login.windows.net/4results.com.br/oauth2/authorize?resource=https://desenvolvimentobuildaos.sandbox.ax.dynamics.com
+    tokenUrl: >-
+      https://login.windows.net/4results.com.br/oauth2/token?resource=https://desenvolvimentobuildaos.sandbox.ax.dynamics.com
+    scopes:
+      readAccess: Access read operations
+      writeAccess: Access write operations

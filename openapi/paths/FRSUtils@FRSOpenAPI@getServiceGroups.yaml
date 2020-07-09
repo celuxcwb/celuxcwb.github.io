@@ -1,0 +1,15 @@
+get:
+  tags:
+    - FRSOpenAPI
+  summary: ''
+  description: getServiceGroups
+  operationId: getServiceGroups
+  responses:
+    '201':
+      description: ''
+    '401':
+      description: Not authenticated
+  security:
+    - oauth2:
+        - 'write:pets'
+        - 'read:pets'
